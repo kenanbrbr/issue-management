@@ -6,21 +6,31 @@ import com.kberber.issuemanagement.repository.IssueRepository;
 import com.kberber.issuemanagement.service.IssueService;
 import com.kberber.issuemanagement.util.TPage;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
+@Service
 public class IssueServiceImpl implements IssueService {
 
-    private final IssueRepository issueRepository;
-    private final ModelMapper modelMapper;
+    @Autowired
+    private IssueRepository issueRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public IssueServiceImpl(IssueRepository issueRepository,ModelMapper modelMapper){
 
         this.issueRepository = issueRepository;
         this.modelMapper=modelMapper;
 
+    }
+
+    public IssueServiceImpl(){
+        super();
     }
 
     @Override
@@ -50,7 +60,13 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public Boolean delete(IssueDto issue) {
+    public Boolean delete(Long issueId) {
+        issueRepository.deleteById(issueId);
+        return true;
+    }
+
+    @Override
+    public IssueDto update(Long id, IssueDto project) {
         return null;
     }
 
