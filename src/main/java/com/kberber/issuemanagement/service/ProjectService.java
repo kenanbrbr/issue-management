@@ -2,7 +2,7 @@ package com.kberber.issuemanagement.service;
 
 import com.kberber.issuemanagement.dto.ProjectDto;
 import com.kberber.issuemanagement.entity.Project;
-import org.springframework.data.domain.Page;
+import com.kberber.issuemanagement.util.TPage;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -13,11 +13,11 @@ public interface ProjectService {
 
     ProjectDto getById(long id);
 
-    Project getByProjectCode(String projectCode);
+    ProjectDto getByProjectCode(String projectCode);
 
-    List<Project> getByProjectCodeContains(String projectCode);
+    List<ProjectDto> getByProjectCodeContains(String projectCode);
 
-    Page<Project> getAllPageable(Pageable pageable);
+    TPage<ProjectDto> getAllPageable(Pageable pageable);
 
     Boolean delete(Project project);
 
